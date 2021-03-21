@@ -1,15 +1,14 @@
 <script>
-	import World from './components/World.svelte'
-
 	export let name;
+	import Physics from './Physics.svelte'
 </script>
 
-<World></World>
-
 <main>
-	<h1>T {name}!</h1>
+	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
+
+<Physics/>
 
 <style>
 	main {
