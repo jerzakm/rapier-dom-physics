@@ -3,26 +3,36 @@
 	import Physics from './Physics.svelte'
 </script>
 
+
+
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<info>
+		<h1>
+		Svelte DOM Physics
+		</h1>
+		<h2>
+			Adds awesome interaction in form of real-time physics to your DOM elements.
+		</h2>
+		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum libero consequatur corrupti officiis molestias dolores deleniti est saepe adipisci nostrum!</p>
+		<p>More info about the project can be found <strong>HERE</strong></p>
+	</info>
+	<bulletpoints>
+		k
+	</bulletpoints>
 </main>
 
-<Physics/>
+<!-- <Physics/> -->
 
 <style>
 	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+		padding: 1rem;
+		display: grid;
+		grid-template-columns: 2fr 3fr;
+		gap: 2rem;
 	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
+	info{
+		padding: 5rem 2rem 5rem 2rem;
 	}
 
 	@media (min-width: 640px) {
