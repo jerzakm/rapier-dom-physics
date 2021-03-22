@@ -52,7 +52,8 @@
   </div>
 </main>
 
-<!-- <Physics/> -->
+<Physics />
+
 <style>
   main {
     display: grid;
