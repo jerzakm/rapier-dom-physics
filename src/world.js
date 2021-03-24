@@ -19,23 +19,20 @@ export class WorldFactory {
         const fixture = wrapPointer( fixturePtr, b2Fixture );
         if ( fixture.GetBody().GetType() != b2_dynamicBody ) //mouse cannot drag static bodies around
           return true;
-        console.log(fixture);
         return false;
     };
     const world = new b2World(new b2Vec2(0.0, -10.0));
     world.SetDebugDraw(renderer);
+    this.world = world
     const bd_ground = new b2BodyDef();
     const groundBody = world.CreateBody(bd_ground);
 
     //ground edges
-    this.createFixtures(groundBody);
+    // this.createFixtures(groundBody);
 
-    this.createFallingShapes(world);
+    // this.createFallingShapes(world);
 
-    // rope
-    const { rope, destroy: destroyRope } = this.createRope();
-
-    this.createStaticPolygonAndChainShapes(groundBody);
+    // this.createStaticPolygonAndChainShapes(groundBody);
 
     // calculate no more than a 60th of a second during one world.Step() call
     const maxTimeStepMs = 1/60*1000;
@@ -44,11 +41,9 @@ export class WorldFactory {
       step(deltaMs) {
         const clampedDeltaMs = Math.min(deltaMs, maxTimeStepMs);
         world.Step(clampedDeltaMs/1000, 3, 2);
-        rope.Step(clampedDeltaMs/1000, 3, new b2Vec2(0, 0));
       },
       draw() {
         world.DebugDraw();
-        rope.Draw(renderer);
       },
       destroy() {
         destroy(world);
@@ -61,12 +56,9 @@ export class WorldFactory {
   createFixtures = (groundBody) => {
     const { b2EdgeShape, b2Vec2 } = this.box2D;
     const shape0 = new b2EdgeShape();
-    shape0.SetTwoSided(new b2Vec2(-40.0, -6.0), new b2Vec2(40.0, -6.0));
+    shape0.SetTwoSided(new b2Vec2(-40.0, -16.0), new b2Vec2(40.0, -16.0));
     groundBody.CreateFixture(shape0, 0.0);
-    shape0.SetTwoSided(new b2Vec2(-9.0, -6.0), new b2Vec2(-9.0, -4.0));
-    groundBody.CreateFixture(shape0, 0.0);
-    shape0.SetTwoSided(new b2Vec2(9.0, -6.0), new b2Vec2(9.0, -4.0));
-    groundBody.CreateFixture(shape0, 0.0);
+
   };
 
   createStaticPolygonAndChainShapes = (groundBody) => {
@@ -89,9 +81,45 @@ export class WorldFactory {
     groundBody.CreateFixture(chainShape, 0.0);
   };
 
-  createFallingShapes = (world) => {
+  createShape = () => {
+    let world = this.world
+    const { createPolygonShape } = this.helpers
+    const {
+      b2BodyDef,
+      b2CircleShape,
+      b2Vec2,
+      b2_dynamicBody,
+    } = this.box2D
+
+    const cshape = new b2CircleShape()
+    cshape.set_m_radius(0.5)
+
+    const ZERO = new b2Vec2(0, 0)
+    const temp = new b2Vec2(0, 0)
+
+    const bd = new b2BodyDef()
+    bd.set_type(b2_dynamicBody)
+    bd.set_position(ZERO)
+    const body = world.CreateBody(bd)
+
+    const verts = []
+    verts.push(new b2Vec2(0, 0))
+    verts.push(new b2Vec2(0, 200))
+    verts.push(new b2Vec2(200, 200))
+    verts.push(new b2Vec2(200, 0))
+
+    const shape = createPolygonShape(verts)
+    body.CreateFixture(shape, 1.0)
+    temp.Set(16 * (Math.random() - 0.5), 4.0 + 2.5 * 0)
+    body.SetTransform(temp, 0.0)
+    body.SetLinearVelocity(ZERO)
+    body.SetEnabled(true)
+  }
+
+  createFallingShapes = () => {
+    let world = this.world
     const { createRandomPolygonShape } = this.helpers;
-    const { b2BodyDef, b2CircleShape, b2Vec2, b2_dynamicBody } = this.box2D;
+    const { b2BodyDef, b2CircleShape, b2Vec2, b2_dynamicBody, b2PolygonShape } = this.box2D;
 
     const cshape = new b2CircleShape();
     cshape.set_m_radius(0.5);
@@ -112,43 +140,4 @@ export class WorldFactory {
       body.SetEnabled(true);
     }
   }
-
-  createRope = () => {
-    const { b2Rope, b2RopeDef, b2RopeTuning, b2Vec2, pointsToVec2Array, toFloatArray } = this.box2D;
-    const rope = new b2Rope();
-    const ropeLen = 37;
-    // https://csharp.hotexamples.com/examples/Box2D.Rope/b2RopeDef/-/php-b2ropedef-class-examples.html
-    const masses = Array(ropeLen).fill(1);
-    masses[0] = 0;
-    masses[masses.length-1] = 0;
-
-    const vertices = Array(ropeLen)
-      .fill(undefined)
-      .map((_, index) => ({
-        x: -9 + 0.5 * index,
-        y: -6
-      }));
-
-    const tuning = new b2RopeTuning();
-    // tuning.set_damping(0.1);
-
-    const ropeDef = new b2RopeDef();
-    const [wrappedMasses, destroyMasses] = toFloatArray(masses);
-    const [wrappedVertices, destroyVertices] = pointsToVec2Array(vertices);
-    ropeDef.set_masses(wrappedMasses);
-    ropeDef.set_vertices(wrappedVertices);
-    ropeDef.set_count(ropeLen);
-    ropeDef.set_gravity(new b2Vec2(0, -10));
-    ropeDef.set_tuning(tuning);
-    ropeDef.set_position(new b2Vec2(0, 0));
-
-    rope.Create(ropeDef);
-    return {
-      rope,
-      destroy() {
-        destroyMasses();
-        destroyVertices();
-      }
-    }
-  };
 }

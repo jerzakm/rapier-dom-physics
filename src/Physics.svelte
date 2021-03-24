@@ -31,7 +31,7 @@
       y: canvas.height / 2,
     };
 
-    const pixelsPerMeter = 32;
+    const pixelsPerMeter = 1;
 
     const renderer = new CanvasDebugDraw(
       box2D,
@@ -40,9 +40,13 @@
       pixelsPerMeter
     ).constructJSDraw();
     renderer.SetFlags(e_shapeBit);
-    const { step, draw, destroy } = new WorldFactory(box2D, helpers).create(
+    const worldFactory = new WorldFactory(box2D, helpers)
+    const { step, draw, destroy } = worldFactory.create(
       renderer
     );
+    // console.log(worldFactory.createFallingShapes)
+    // worldFactory.createFallingShapes()
+    worldFactory.createShape()
 
     const myRound = (val, places) => {
       let c = 1;
@@ -68,10 +72,6 @@
     setViewCenterWorld(new b2Vec2(0, 0), true);
 
     const drawCanvas = () => {
-      //black background
-      // ctx.fillStyle = "rgba(0,0,0,0)";
-      // ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       //transparent background
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -82,17 +82,6 @@
       // CanvasDebugDraw.drawAxes(ctx!);
       ctx.fillStyle = "rgb(255,255,0)";
       draw();
-
-      // if ( mouseJoint != null ) {
-      //     //mouse joint is not drawn with regular joints in debug draw
-      //     var p1 = mouseJoint.GetAnchorB();
-      //     var p2 = mouseJoint.GetTarget();
-      //     ctx!.strokeStyle = 'rgb(204,204,204)';
-      //     ctx!.beginPath();
-      //     ctx!.moveTo(p1.get_x(),p1.get_y());
-      //     ctx!.lineTo(p2.get_x(),p2.get_y());
-      //     ctx!.stroke();
-      // }
 
       ctx.restore();
     };
@@ -129,3 +118,5 @@
     mask: url(logo.svg) 50% 50% no-repeat; */
   }
 </style>
+
+<slot></slot>

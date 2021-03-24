@@ -2,57 +2,57 @@
   import Physics from "./Physics.svelte";
 </script>
 
-<main>
-  <info>
-    <div>
-      <h1>Svelte DOM Physics</h1>
-      <h2>
-        Adds awesome interaction in form of real-time physics to your DOM
-        elements.
-      </h2>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum libero
-        consequatur corrupti officiis molestias dolores deleniti est saepe
-        adipisci nostrum!
-      </p>
+<Physics>
+  <main>
+    <info>
+      <div>
+        <h1>Svelte DOM Physics</h1>
+        <h2>
+          Adds awesome interaction in form of real-time physics to your DOM
+          elements.
+        </h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum libero
+          consequatur corrupti officiis molestias dolores deleniti est saepe
+          adipisci nostrum!
+        </p>
+      </div>
+      <div>
+        <p>More info about the project can be found <a href=".">HERE</a></p>
+        <p>
+          Want to contribute, discuss implementation, performance or anything
+          else?
+        </p>
+        <a href=".">Open an issue</a> or <a href=".">Send me a message</a>
+      </div>
+    </info>
+    <div class="grid">
+      <div class="grid-item" />
+      <div class="grid-item grid-item--width2 " />
+      <div class="grid-item " />
+      <div class="grid-item " />
+      <div class="grid-item grid-item--width3" />
+      <div class="grid-item" />
+      <div class="grid-item" />
+      <div class="grid-item " />
+      <div class="grid-item grid-item--width2 " />
+      <div class="grid-item" />
+      <div class="grid-item " />
+      <div class="grid-item" />
+      <div class="grid-item grid-item--width2 " />
+      <div class="grid-item grid-item--width2" />
+      <div class="grid-item" />
+      <div class="grid-item " />
+      <div class="grid-item" />
+      <div class="grid-item" />
+      <div class="grid-item " />
+      <div class="grid-item " />
+      <div class="grid-item" />
+      <div class="grid-item" />
+      <div class="grid-item" />
     </div>
-    <div>
-      <p>More info about the project can be found <a href=".">HERE</a></p>
-      <p>
-        Want to contribute, discuss implementation, performance or anything
-        else?
-      </p>
-      <a href=".">Open an issue</a> or <a href=".">Send me a message</a>
-    </div>
-  </info>
-  <div class="grid">
-    <div class="grid-item" />
-    <div class="grid-item grid-item--width2 " />
-    <div class="grid-item " />
-    <div class="grid-item " />
-    <div class="grid-item grid-item--width3" />
-    <div class="grid-item" />
-    <div class="grid-item" />
-    <div class="grid-item " />
-    <div class="grid-item grid-item--width2 " />
-    <div class="grid-item" />
-    <div class="grid-item " />
-    <div class="grid-item" />
-    <div class="grid-item grid-item--width2 " />
-    <div class="grid-item grid-item--width2" />
-    <div class="grid-item" />
-    <div class="grid-item " />
-    <div class="grid-item" />
-    <div class="grid-item" />
-    <div class="grid-item " />
-    <div class="grid-item " />
-    <div class="grid-item" />
-    <div class="grid-item" />
-    <div class="grid-item" />
-  </div>
-</main>
-
-<Physics />
+  </main>
+</Physics>
 
 <style>
   main {
