@@ -1,7 +1,7 @@
 <script>
-  let element
+  let element;
 </script>
 
 <div bind:this={element}>
-  <slot></slot>
+  <slot />
 </div>

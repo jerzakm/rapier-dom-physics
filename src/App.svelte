@@ -1,60 +1,77 @@
 <script>
-  import Physics from "./Physics.svelte";
+  import PhysDiv from "./components/PhysDiv.svelte";
+  import { runPhysics } from "./physicsRunner";
+  import { onMount } from "svelte";
+  let canvas;
+
+  onMount(() => {
+    runPhysics(canvas);
+  });
 </script>
 
-<Physics>
-  <main>
-    <info>
-      <div>
+<canvas
+  bind:this={canvas}
+  width={window.innerWidth}
+  height={window.innerHeight}
+/>
+<main>
+  <info>
+    <div>
+      <PhysDiv>
         <h1>Svelte DOM Physics</h1>
-        <h2>
-          Adds awesome interaction in form of real-time physics to your DOM
-          elements.
-        </h2>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum libero
-          consequatur corrupti officiis molestias dolores deleniti est saepe
-          adipisci nostrum!
-        </p>
-      </div>
-      <div>
-        <p>More info about the project can be found <a href=".">HERE</a></p>
-        <p>
-          Want to contribute, discuss implementation, performance or anything
-          else?
-        </p>
-        <a href=".">Open an issue</a> or <a href=".">Send me a message</a>
-      </div>
-    </info>
-    <div class="grid">
-      <div class="grid-item" />
-      <div class="grid-item grid-item--width2 " />
-      <div class="grid-item " />
-      <div class="grid-item " />
-      <div class="grid-item grid-item--width3" />
-      <div class="grid-item" />
-      <div class="grid-item" />
-      <div class="grid-item " />
-      <div class="grid-item grid-item--width2 " />
-      <div class="grid-item" />
-      <div class="grid-item " />
-      <div class="grid-item" />
-      <div class="grid-item grid-item--width2 " />
-      <div class="grid-item grid-item--width2" />
-      <div class="grid-item" />
-      <div class="grid-item " />
-      <div class="grid-item" />
-      <div class="grid-item" />
-      <div class="grid-item " />
-      <div class="grid-item " />
-      <div class="grid-item" />
-      <div class="grid-item" />
-      <div class="grid-item" />
+      </PhysDiv>
+      <h2>
+        Adds awesome interaction in form of real-time physics to your DOM
+        elements.
+      </h2>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum libero
+        consequatur corrupti officiis molestias dolores deleniti est saepe
+        adipisci nostrum!
+      </p>
     </div>
-  </main>
-</Physics>
+    <div>
+      <p>More info about the project can be found <a href=".">HERE</a></p>
+      <p>
+        Want to contribute, discuss implementation, performance or anything
+        else?
+      </p>
+      <a href=".">Open an issue</a> or <a href=".">Send me a message</a>
+    </div>
+  </info>
+  <div class="grid">
+    <div class="grid-item" />
+    <div class="grid-item grid-item--width2 " />
+    <div class="grid-item " />
+    <div class="grid-item " />
+    <div class="grid-item grid-item--width3" />
+    <div class="grid-item" />
+    <div class="grid-item" />
+    <div class="grid-item " />
+    <div class="grid-item grid-item--width2 " />
+    <div class="grid-item" />
+    <div class="grid-item " />
+    <div class="grid-item" />
+    <div class="grid-item grid-item--width2 " />
+    <div class="grid-item grid-item--width2" />
+    <div class="grid-item" />
+    <div class="grid-item " />
+    <div class="grid-item" />
+    <div class="grid-item" />
+    <div class="grid-item " />
+    <div class="grid-item " />
+    <div class="grid-item" />
+    <div class="grid-item" />
+    <div class="grid-item" />
+  </div>
+</main>
 
 <style>
+  canvas {
+    position: fixed;
+    top: 0;
+  }
+
   main {
     display: grid;
     grid-template-columns: 1fr;
