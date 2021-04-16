@@ -20,15 +20,19 @@
       <PhysDiv>
         <h1>Svelte DOM Physics</h1>
       </PhysDiv>
-      <h2>
-        Adds awesome interaction in form of real-time physics to your DOM
-        elements.
-      </h2>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum libero
-        consequatur corrupti officiis molestias dolores deleniti est saepe
-        adipisci nostrum!
-      </p>
+      <PhysDiv>
+        <h2>
+          Adds awesome interaction in form of real-time physics to your DOM
+          elements.
+        </h2>
+      </PhysDiv>
+      <PhysDiv>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum libero
+          consequatur corrupti officiis molestias dolores deleniti est saepe
+          adipisci nostrum!
+        </p>
+      </PhysDiv>
     </div>
     <div>
       <p>More info about the project can be found <a href=".">HERE</a></p>

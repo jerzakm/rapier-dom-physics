@@ -3,8 +3,9 @@ import Box2DFactory from "box2d-wasm";
 import { CanvasDebugDraw } from "./debugDraw";
 import { Helpers } from "./helpers";
 import { WorldFactory } from "./world";
+import { physicsEnabled } from "./store";
 
-let box2D;
+let box2D, helpers, worldFactory;
 
 const PIXELS_PER_METER = 1;
 
@@ -22,7 +23,7 @@ export const runPhysics = async (canvas) => {
     b2Vec2,
     b2Draw: { e_shapeBit },
   } = box2D;
-  const helpers = new Helpers(box2D);
+  helpers = new Helpers(box2D);
 
   const ctx = canvas.getContext("2d");
   const canvasOffset = {
@@ -41,9 +42,9 @@ export const runPhysics = async (canvas) => {
     PIXELS_PER_METER
   ).constructJSDraw();
   renderer.SetFlags(e_shapeBit);
-  const worldFactory = new WorldFactory(box2D, helpers);
+  worldFactory = new WorldFactory(box2D, helpers);
   const { step, draw, destroy } = worldFactory.create(renderer);
-  worldFactory.createShape();
+  //   worldFactory.createShape(50, 50, 200, 100);
 
   const myRound = (val, places) => {
     let c = 1;
@@ -72,7 +73,7 @@ export const runPhysics = async (canvas) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.save();
-    ctx.translate(canvasOffset.x, canvasOffset.y);
+    ctx.translate(0, 300);
     ctx.scale(PIXELS_PER_METER, -PIXELS_PER_METER);
     ctx.lineWidth /= PIXELS_PER_METER;
     // CanvasDebugDraw.drawAxes(ctx!);
@@ -92,5 +93,13 @@ export const runPhysics = async (canvas) => {
     drawCanvas();
   }
 
+  physicsEnabled.set(true);
+
   ticker();
+};
+
+export const registerPhysDiv = (el) => {
+  const obj = el.getBoundingClientRect();
+  console.log(obj);
+  worldFactory.createShape(obj.x, obj.y, obj.width, obj.height);
 };
