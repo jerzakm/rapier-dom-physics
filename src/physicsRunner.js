@@ -9,6 +9,8 @@ let box2D, helpers, worldFactory;
 
 const PIXELS_PER_METER = 1;
 
+const physDivList = [];
+
 export const runPhysics = async (canvas) => {
   box2D = await Box2DFactory({
     /**
@@ -88,6 +90,7 @@ export const runPhysics = async (canvas) => {
     handle = requestAnimationFrame(ticker.bind(null, nowMs));
     const deltaMs = nowMs - prevMs;
     step(deltaMs);
+    syncDomToPhysics();
     drawCanvas();
   }
 
@@ -97,7 +100,23 @@ export const runPhysics = async (canvas) => {
 };
 
 export const registerPhysDiv = (el) => {
-  const obj = el.getBoundingClientRect();
-  console.log(obj);
-  worldFactory.createShape(obj.x, obj.y, obj.width, obj.height);
+  const origin = el.getBoundingClientRect();
+  const body = worldFactory.createShape(
+    origin.x,
+    origin.y,
+    origin.width,
+    origin.height
+  );
+
+  physDivList.push({ el, body, origin });
 };
+
+function syncDomToPhysics() {
+  for (const obj of physDivList) {
+    const physPos = obj.body.GetPosition();
+    const physAngle = obj.body.GetAngle();
+    obj.el.style.transform = `translate3d(${physPos.x - obj.origin.x}px, ${
+      physPos.y - obj.origin.y
+    }px, 0)`;
+  }
+}

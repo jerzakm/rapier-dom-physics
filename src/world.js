@@ -64,7 +64,7 @@ export class WorldFactory {
     const temp = new b2Vec2(x, y);
 
     const bd = new b2BodyDef();
-    // bd.set_type(b2_dynamicBody);
+    bd.set_type(b2_dynamicBody);
     // bd.set_position(ZERO);
     const body = world.CreateBody(bd);
 
@@ -80,5 +80,7 @@ export class WorldFactory {
     body.SetTransform(temp, 0);
     console.log(body);
     body.SetEnabled(true);
+
+    return body;
   };
 }
