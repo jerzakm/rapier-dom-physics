@@ -73,10 +73,8 @@ export const runPhysics = async (canvas) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.save();
-    ctx.translate(0, 300);
     ctx.scale(PIXELS_PER_METER, -PIXELS_PER_METER);
     ctx.lineWidth /= PIXELS_PER_METER;
-    // CanvasDebugDraw.drawAxes(ctx!);
     ctx.fillStyle = "rgb(255,255,0)";
     draw();
 

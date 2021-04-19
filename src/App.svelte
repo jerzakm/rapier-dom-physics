@@ -20,17 +20,26 @@
       <PhysDiv>
         <h1>Svelte DOM Physics</h1>
       </PhysDiv>
-      <PhysDiv>
-        <h2>
-          Adds awesome interaction in form of real-time physics to your DOM
-          elements.
-        </h2>
-      </PhysDiv>
+
+      <h2>
+        Adds awesome interaction in form of real-time physics to your DOM
+        elements.
+      </h2>
+
       <PhysDiv>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum libero
-          consequatur corrupti officiis molestias dolores deleniti est saepe
-          adipisci nostrum!
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad iusto
+          itaque, numquam fuga iste unde id voluptatum minima maxime?
+          Praesentium animi corrupti eligendi ipsum tempora accusantium, commodi
+          nam in atque hic recusandae omnis a dolor facilis odit culpa nemo
+          adipisci ratione accusamus. Dolorum, voluptatum tenetur beatae ipsum
+          quibusdam consectetur eveniet eligendi vitae quis hic, dicta ut autem
+          quam distinctio veritatis velit sunt doloribus. Vero reiciendis,
+          inventore quasi itaque vitae cum laboriosam nulla sint dolores ipsam
+          fugiat, in repellendus cupiditate voluptates explicabo eligendi
+          officia repudiandae deserunt ipsa. Animi temporibus totam commodi,
+          alias ea quos, eius asperiores, assumenda sit velit repellendus
+          voluptatibus.
         </p>
       </PhysDiv>
     </div>
@@ -43,7 +52,7 @@
       <a href=".">Open an issue</a> or <a href=".">Send me a message</a>
     </div>
   </info>
-  <div class="grid">
+  <!-- <div class="grid">
     <div class="grid-item" />
     <div class="grid-item grid-item--width2 " />
     <div class="grid-item " />
@@ -67,13 +76,14 @@
     <div class="grid-item" />
     <div class="grid-item" />
     <div class="grid-item" />
-  </div>
+  </div> -->
 </main>
 
 <style>
   canvas {
     position: fixed;
     top: 0;
+    left: 0;
   }
 
   main {

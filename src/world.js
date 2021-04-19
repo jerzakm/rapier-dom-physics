@@ -64,14 +64,14 @@ export class WorldFactory {
     const temp = new b2Vec2(x, y);
 
     const bd = new b2BodyDef();
-    bd.set_type(b2_dynamicBody);
+    // bd.set_type(b2_dynamicBody);
     // bd.set_position(ZERO);
     const body = world.CreateBody(bd);
 
     const verts = [];
     verts.push(new b2Vec2(0, 0));
-    verts.push(new b2Vec2(0, -height));
-    verts.push(new b2Vec2(width, -height));
+    verts.push(new b2Vec2(0, height));
+    verts.push(new b2Vec2(width, height));
     verts.push(new b2Vec2(width, 0));
 
     const shape = createPolygonShape(verts);
