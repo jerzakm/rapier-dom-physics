@@ -111,18 +111,30 @@ export const registerPhysDiv = (el) => {
   physDivList.push({ el, body, origin })
 }
 
+let count = 0
+
 function syncDomToPhysics() {
   for (const obj of physDivList) {
     const physPos = obj.body.GetPosition()
     const physAngle = obj.body.GetAngle()
-    obj.el.style.transform = `translate3d(${
-      physPos.x - obj.origin.x - physAngle
-    }px, ${physPos.y - obj.origin.y}px, 0) rotate(${
-      (physAngle * 180) / Math.PI
-    }deg)`
 
-    // obj.el.style.transform = `translate3d(${physPos.x}px, ${
-    //   physPos.y
-    // }px, 0) rotate(${(physAngle * 180) / Math.PI}deg)`
+    let update = false
+
+    if (
+      !obj.lastPosition ||
+      Math.abs(
+        obj.lastPosition.x + obj.lastPosition.y - physPos.x - physPos.y
+      ) > 100
+    ) {
+      update = true
+    }
+
+    if (update) {
+      obj.el.style.transform = `translate3d(${
+        physPos.x - obj.origin.x - physAngle
+      }px, ${physPos.y - obj.origin.y}px, 0) rotate(${
+        (physAngle * 180) / Math.PI
+      }deg)`
+    }
   }
 }

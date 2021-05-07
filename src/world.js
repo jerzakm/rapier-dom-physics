@@ -1,5 +1,3 @@
-import { Helpers } from './helpers'
-
 export class WorldFactory {
   constructor(box2D, helpers) {
     this.box2D = box2D
