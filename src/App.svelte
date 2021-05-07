@@ -1,12 +1,12 @@
 <script>
-  import PhysDiv from "./components/PhysDiv.svelte";
-  import { runPhysics } from "./physicsRunner";
-  import { onMount } from "svelte";
-  let canvas;
+  import PhysDiv from './components/PhysDiv.svelte'
+  import { runPhysics } from './physicsRunner'
+  import { onMount } from 'svelte'
+  let canvas
 
   onMount(() => {
-    runPhysics(canvas);
-  });
+    runPhysics(canvas)
+  })
 </script>
 
 <canvas
@@ -21,10 +21,12 @@
         <h1>Svelte DOM Physics</h1>
       </PhysDiv>
 
-      <h2>
-        Adds awesome interaction in form of real-time physics to your DOM
-        elements.
-      </h2>
+      <PhysDiv>
+        <h2>
+          Adds awesome interaction in form of real-time physics to your DOM
+          elements.
+        </h2>
+      </PhysDiv>
 
       <PhysDiv>
         <p>
@@ -44,39 +46,46 @@
       </PhysDiv>
     </div>
     <div>
-      <p>More info about the project can be found <a href=".">HERE</a></p>
-      <p>
-        Want to contribute, discuss implementation, performance or anything
-        else?
-      </p>
-      <a href=".">Open an issue</a> or <a href=".">Send me a message</a>
+      <PhysDiv>
+        <p>More info about the project can be found <a href=".">HERE</a></p>
+      </PhysDiv>
+      <PhysDiv>
+        <p>
+          Want to contribute, discuss implementation, performance or anything
+          else?
+        </p>
+      </PhysDiv>
+      <PhysDiv>
+        <a href=".">Open an issue</a> or</PhysDiv
+      >
+      <PhysDiv><a href=".">Send me a message</a></PhysDiv>
     </div>
   </info>
-  <!-- <div class="grid">
-    <div class="grid-item" />
-    <div class="grid-item grid-item--width2 " />
-    <div class="grid-item " />
-    <div class="grid-item " />
-    <div class="grid-item grid-item--width3" />
-    <div class="grid-item" />
-    <div class="grid-item" />
-    <div class="grid-item " />
-    <div class="grid-item grid-item--width2 " />
-    <div class="grid-item" />
-    <div class="grid-item " />
-    <div class="grid-item" />
-    <div class="grid-item grid-item--width2 " />
-    <div class="grid-item grid-item--width2" />
-    <div class="grid-item" />
-    <div class="grid-item " />
-    <div class="grid-item" />
-    <div class="grid-item" />
-    <div class="grid-item " />
-    <div class="grid-item " />
-    <div class="grid-item" />
-    <div class="grid-item" />
-    <div class="grid-item" />
-  </div> -->
+  <div class="grid">
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+    <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
+    <PhysDiv><div class="grid-item " /></PhysDiv>
+    <PhysDiv><div class="grid-item " /></PhysDiv>
+    <PhysDiv><div class="grid-item grid-item--width3" /></PhysDiv>
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+    <PhysDiv><div class="grid-item " /></PhysDiv>
+    <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+    <PhysDiv><div class="grid-item " /></PhysDiv>
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+    <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
+    <PhysDiv><div class="grid-item grid-item--width2" /></PhysDiv>
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+    <PhysDiv><div class="grid-item " /></PhysDiv>
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+    <PhysDiv><div class="grid-item " /></PhysDiv>
+    <PhysDiv><div class="grid-item " /></PhysDiv>
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+    <PhysDiv><div class="grid-item" /></PhysDiv>
+  </div>
 </main>
 
 <style>
