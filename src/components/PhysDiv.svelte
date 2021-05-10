@@ -1,18 +1,16 @@
 <script>
-  import { onMount } from 'svelte'
+  import { onMount, getContext } from 'svelte'
   import { registerPhysDiv } from '../physicsRunner'
   import { physicsEnabled } from '../store'
 
-  export let debug
-
   let element
+
+  const w = getContext('physicsWorld')
+  console.log(w)
 
   onMount(() => {
     physicsEnabled.subscribe((value) => {
       if (value == true) {
-        if (debug) {
-          console.log(element, element.getBoundingClientRect())
-        }
         registerPhysDiv(element)
       }
     })

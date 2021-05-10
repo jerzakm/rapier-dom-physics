@@ -26,17 +26,6 @@ export class WorldFactory {
     const world = new b2World(new b2Vec2(0.0, 600.0))
     world.SetDebugDraw(renderer)
     this.world = world
-    // const bd_ground = new b2BodyDef()
-    // const groundBody = world.CreateBody(bd_ground)
-
-    // ground edges
-    // this.createFixtures(groundBody)
-
-    // this.createFallingShapes(world);
-
-    // this.createStaticPolygonAndChainShapes(groundBody);
-
-    // calculate no more than a 60th of a second during one world.Step() call
 
     const maxTimeStepMs = (1 / 60) * 1000
 
