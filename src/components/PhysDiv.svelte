@@ -9,11 +9,12 @@
   console.log(w)
 
   onMount(() => {
-    physicsEnabled.subscribe((value) => {
-      if (value == true) {
-        registerPhysDiv(element)
-      }
-    })
+    // physicsEnabled.subscribe((value) => {
+    //   if (value == true) {
+    //     registerPhysDiv(element)
+    //   }
+    // })
+    w.registerPhysDiv(element)
   })
 </script>
 

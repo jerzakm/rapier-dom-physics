@@ -111,8 +111,6 @@ export const registerPhysDiv = (el) => {
   physDivList.push({ el, body, origin })
 }
 
-let count = 0
-
 function syncDomToPhysics() {
   for (const obj of physDivList) {
     const physPos = obj.body.GetPosition()

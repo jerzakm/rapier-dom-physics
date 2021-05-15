@@ -6,15 +6,15 @@
   let canvas
 
   onMount(() => {
-    runPhysics(canvas)
+    // runPhysics(canvas)
   })
 </script>
 
-<canvas
+<!-- <canvas
   bind:this={canvas}
   width={window.innerWidth}
   height={window.innerHeight}
-/>
+/> -->
 <main>
   <World>
     <info>
