@@ -1,6 +1,6 @@
 <script>
   import PhysicsWorld from '../PhysicsWorld'
-  import { onMount, setContext } from 'svelte'
+  import { setContext } from 'svelte'
 
   const world = new PhysicsWorld()
 

@@ -47,9 +47,8 @@ export default class PhysicsWorld {
     })
 
     const setViewCenterWorld = (pos, instantaneous) => {
-      const currentViewCenterWorld = getWorldPointFromPixelPoint(
-        viewCenterPixel
-      )
+      const currentViewCenterWorld =
+        getWorldPointFromPixelPoint(viewCenterPixel)
       const toMoveX = pos.get_x() - currentViewCenterWorld.x
       const toMoveY = pos.get_y() - currentViewCenterWorld.y
       const fraction = instantaneous ? 1 : 0.25
@@ -64,11 +63,11 @@ export default class PhysicsWorld {
       if (this.ctx) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.save()
-        this.ctx.scale(PIXELS_PER_METER, -PIXELS_PER_METER)
-        this.ctx.lineWidth /= PIXELS_PER_METER
+        this.ctx.scale(this.PIXELS_PER_METER, -this.PIXELS_PER_METER)
+        this.ctx.lineWidth /= this.PIXELS_PER_METER
         this.ctx.fillStyle = 'rgb(255,255,0)'
         draw()
-        ctx.restore()
+        this.ctx.restore()
       }
     }
 
@@ -99,13 +98,14 @@ export default class PhysicsWorld {
     canvas.style.left = 0
     canvas.style.width = window.innerWidth + 'px'
     canvas.style.height = window.innerHeight + 'px'
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
 
     document.body.appendChild(canvas)
 
     const ctx = canvas.getContext('2d')
-
     this.canvas = canvas
-    this.debugCtx = ctx
+    this.ctx = ctx
 
     const renderer = new CanvasDebugDraw(
       this.box2D,
@@ -130,7 +130,6 @@ export default class PhysicsWorld {
 
       this.physDivList.push({ el, body, origin })
     } else {
-      console.log('timeout')
       setTimeout(() => {
         this.registerPhysDiv(el), 100
       })
