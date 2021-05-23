@@ -2,6 +2,7 @@ import Box2DFactory from 'box2d-wasm'
 import { Helpers } from './helpers'
 import { CanvasDebugDraw } from './debugDraw'
 import { WorldFactory } from './world'
+import { divPhysicsWorldStore } from './store'
 
 export default class PhysicsWorld {
   constructor() {
@@ -82,18 +83,18 @@ export default class PhysicsWorld {
       drawCanvas()
     }
 
-    // this.physicsEnabled.set(true)
+    divPhysicsWorldStore.set(this)
 
     ticker()
   }
 
   initDebugCanvas() {
     const {
-      b2Vec2,
       b2Draw: { e_shapeBit },
     } = this.box2D
     const canvas = document.createElement('canvas')
     canvas.style.position = 'fixed'
+
     canvas.style.top = 0
     canvas.style.left = 0
     canvas.style.width = window.innerWidth + 'px'

@@ -1,29 +1,29 @@
 <script>
   import { onMount, getContext } from 'svelte'
-  import { registerPhysDiv } from '../physicsRunner'
-  import { physicsEnabled } from '../store'
+  import { divPhysicsWorldStore } from '../store'
 
   let element
+  let registered = false
 
-  const w = getContext('physicsWorld')
-  console.log(w)
+  const physicsWorld = getContext('physicsWorld')
 
   onMount(() => {
-    // physicsEnabled.subscribe((value) => {
-    //   if (value == true) {
-    //     registerPhysDiv(element)
-    //   }
-    // })
-    w.registerPhysDiv(element)
+    // physicsWorld.registerPhysDiv(element)
+    divPhysicsWorldStore.subscribe((world) => {
+      if (world && !registered) {
+        world.registerPhysDiv(element)
+        registered = true
+      }
+    })
   })
 </script>
 
-<div bind:this={element}>
+<physDiv bind:this={element}>
   <slot />
-</div>
+</physDiv>
 
 <style>
-  div {
+  physDiv {
     transform-origin: 0% 0%;
     display: inline-block;
   }

@@ -91,12 +91,6 @@
 </main>
 
 <style>
-  canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-
   main {
     display: grid;
     grid-template-columns: 1fr;
