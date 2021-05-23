@@ -1,20 +1,8 @@
 <script>
   import PhysDiv from './components/PhysDiv.svelte'
   import World from './components/World.svelte'
-  import { runPhysics } from './physicsRunner'
-  import { onMount } from 'svelte'
-  let canvas
-
-  onMount(() => {
-    // runPhysics(canvas)
-  })
 </script>
 
-<!-- <canvas
-  bind:this={canvas}
-  width={window.innerWidth}
-  height={window.innerHeight}
-/> -->
 <main>
   <World>
     <info>
