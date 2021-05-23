@@ -5,10 +5,13 @@
   let element
   let registered = false
 
-  const physicsWorld = getContext('physicsWorld')
+  //
+  // const physicsWorld = getContext('physicsWorld')
 
   onMount(() => {
+    // Registration with context - OLD
     // physicsWorld.registerPhysDiv(element)
+
     divPhysicsWorldStore.subscribe((world) => {
       if (world && !registered) {
         world.registerPhysDiv(element)
@@ -26,5 +29,6 @@
   physDiv {
     transform-origin: 0% 0%;
     display: inline-block;
+    /* transition-duration: 10ms; */
   }
 </style>

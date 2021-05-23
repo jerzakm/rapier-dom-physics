@@ -138,7 +138,7 @@ export class CanvasDebugDraw {
       },
       DrawSolidPolygon: (vertices, vertexCount, color_p) => {
         this.setColorFromDebugDrawCallback(color_p)
-        this.drawPolygon(vertices, vertexCount, true)
+        this.drawPolygon(vertices, vertexCount, false)
       },
       DrawCircle: (center_p, radius, color_p) => {
         this.setColorFromDebugDrawCallback(color_p)

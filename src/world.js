@@ -24,6 +24,7 @@ export class WorldFactory {
       return false
     }
     const world = new b2World(new b2Vec2(0.0, 600.0))
+    world.SetAllowSleeping(true)
     world.SetDebugDraw(renderer)
     this.world = world
 
@@ -34,14 +35,13 @@ export class WorldFactory {
     return {
       step(deltaMs) {
         const clampedDeltaMs = Math.min(deltaMs, maxTimeStepMs)
-        world.Step(clampedDeltaMs / 1000, 3, 2)
+        world.Step(clampedDeltaMs / 1000, 10, 10)
       },
       draw() {
         world.DebugDraw()
       },
       destroy() {
         destroy(world)
-        destroyRope()
       },
     }
   }

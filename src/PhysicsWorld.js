@@ -4,6 +4,8 @@ import { CanvasDebugDraw } from './debugDraw'
 import { WorldFactory } from './world'
 import { divPhysicsWorldStore } from './store'
 
+let frame = 0
+
 export default class PhysicsWorld {
   constructor() {
     this.physDivList = []
@@ -66,7 +68,7 @@ export default class PhysicsWorld {
         this.ctx.save()
         this.ctx.scale(this.PIXELS_PER_METER, -this.PIXELS_PER_METER)
         this.ctx.lineWidth /= this.PIXELS_PER_METER
-        this.ctx.fillStyle = 'rgb(255,255,0)'
+        this.ctx.fillStyle = 'rgba(255,255,0,0)'
         draw()
         this.ctx.restore()
       }
@@ -128,8 +130,10 @@ export default class PhysicsWorld {
         origin.width,
         origin.height
       )
+      const lastPosition = { x: 0, y: 0 }
+      const lastAngle = 0
 
-      this.physDivList.push({ el, body, origin })
+      this.physDivList.push({ el, body, origin, lastPosition, lastAngle })
     } else {
       setTimeout(() => {
         this.registerPhysDiv(el), 100
@@ -138,27 +142,30 @@ export default class PhysicsWorld {
   }
 
   syncDomToPhysics() {
+    frame++
+    // let update = frame % 2 == 0 ? true : false
+    // let update = true
+    // let logged = false
+
     for (const obj of this.physDivList) {
       const physPos = obj.body.GetPosition()
       const physAngle = obj.body.GetAngle()
 
-      let update = false
+      const x1 = obj.lastPosition.x
+      const x2 = physPos.x
+      const y1 = obj.lastPosition.y
+      const y2 = physPos.y
+      const dist = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
 
-      if (
-        !obj.lastPosition ||
-        Math.abs(
-          obj.lastPosition.x + obj.lastPosition.y - physPos.x - physPos.y
-        ) > 100
-      ) {
-        update = true
-      }
-
-      if (update) {
+      if (dist > 1) {
         obj.el.style.transform = `translate3d(${
           physPos.x - obj.origin.x - physAngle
         }px, ${physPos.y - obj.origin.y}px, 0) rotate(${
           (physAngle * 180) / Math.PI
         }deg)`
+        obj.lastPosition.x = physPos.x * 1
+        obj.lastPosition.y = physPos.y * 1
+        obj.lastAngle = physAngle * 1
       }
     }
   }

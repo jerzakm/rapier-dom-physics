@@ -4,7 +4,7 @@
 
   const world = new PhysicsWorld()
 
-  setContext('physicsWorld', world)
+  // setContext('physicsWorld', world)
 </script>
 
 <slot />

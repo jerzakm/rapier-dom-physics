@@ -7,6 +7,27 @@
   <World>
     <info>
       <div>
+        <div class="grid">
+          <PhysDiv><div class="grid-item" /></PhysDiv>
+          <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
+          <PhysDiv><div class="grid-item " /></PhysDiv>
+          <PhysDiv><div class="grid-item " /></PhysDiv>
+          <PhysDiv><div class="grid-item grid-item--width3" /></PhysDiv>
+          <PhysDiv><div class="grid-item" /></PhysDiv>
+          <PhysDiv><div class="grid-item" /></PhysDiv>
+          <PhysDiv><div class="grid-item " /></PhysDiv>
+          <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
+          <PhysDiv><div class="grid-item" /></PhysDiv>
+          <PhysDiv><div class="grid-item " /></PhysDiv>
+          <PhysDiv><div class="grid-item" /></PhysDiv>
+          <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
+          <PhysDiv><div class="grid-item grid-item--width2" /></PhysDiv>
+          <PhysDiv><div class="grid-item" /></PhysDiv>
+          <PhysDiv><div class="grid-item " /></PhysDiv>
+          <PhysDiv><div class="grid-item" /></PhysDiv>
+          <PhysDiv><div class="grid-item" /></PhysDiv>
+          <PhysDiv><div class="grid-item " /></PhysDiv>
+        </div>
         <PhysDiv>
           <h1>Svelte DOM Physics</h1>
         </PhysDiv>
@@ -74,6 +95,29 @@
       <PhysDiv><div class="grid-item" /></PhysDiv>
       <PhysDiv><div class="grid-item" /></PhysDiv>
       <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
+      <PhysDiv><div class="grid-item " /></PhysDiv>
+      <PhysDiv><div class="grid-item " /></PhysDiv>
+      <PhysDiv><div class="grid-item grid-item--width3" /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item " /></PhysDiv>
+      <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item " /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
+      <PhysDiv><div class="grid-item grid-item--width2" /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item " /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item " /></PhysDiv>
+      <PhysDiv><div class="grid-item " /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv><div class="grid-item" /></PhysDiv>
     </div>
   </World>
 </main>
@@ -108,8 +152,8 @@
     /* padding: 5rem 0 5rem 0; */
   }
   .grid-item {
-    width: 160px;
-    height: 90px;
+    width: 80px;
+    height: 40px;
     float: left;
     background: #ff3e00;
     border-radius: 5px;
@@ -117,9 +161,9 @@
   }
 
   .grid-item--width2 {
-    width: 320px;
+    width: 90px;
   }
   .grid-item--width3 {
-    width: 440px;
+    width: 200px;
   }
 </style>
