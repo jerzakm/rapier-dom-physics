@@ -103,6 +103,7 @@ export default class PhysicsWorld {
     canvas.style.height = window.innerHeight + 'px'
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
+    canvas.style.zIndex = -1
 
     document.body.appendChild(canvas)
 

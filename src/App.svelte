@@ -22,11 +22,6 @@
           <PhysDiv><div class="grid-item" /></PhysDiv>
           <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
           <PhysDiv><div class="grid-item grid-item--width2" /></PhysDiv>
-          <PhysDiv><div class="grid-item" /></PhysDiv>
-          <PhysDiv><div class="grid-item " /></PhysDiv>
-          <PhysDiv><div class="grid-item" /></PhysDiv>
-          <PhysDiv><div class="grid-item" /></PhysDiv>
-          <PhysDiv><div class="grid-item " /></PhysDiv>
         </div>
         <PhysDiv>
           <h1>Svelte DOM Physics</h1>
@@ -36,23 +31,6 @@
             Adds awesome interaction in form of real-time physics to your DOM
             elements.
           </h2>
-        </PhysDiv>
-
-        <PhysDiv>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad iusto
-            itaque, numquam fuga iste unde id voluptatum minima maxime?
-            Praesentium animi corrupti eligendi ipsum tempora accusantium,
-            commodi nam in atque hic recusandae omnis a dolor facilis odit culpa
-            nemo adipisci ratione accusamus. Dolorum, voluptatum tenetur beatae
-            ipsum quibusdam consectetur eveniet eligendi vitae quis hic, dicta
-            ut autem quam distinctio veritatis velit sunt doloribus. Vero
-            reiciendis, inventore quasi itaque vitae cum laboriosam nulla sint
-            dolores ipsam fugiat, in repellendus cupiditate voluptates explicabo
-            eligendi officia repudiandae deserunt ipsa. Animi temporibus totam
-            commodi, alias ea quos, eius asperiores, assumenda sit velit
-            repellendus voluptatibus.
-          </p>
         </PhysDiv>
       </div>
       <div>
@@ -140,12 +118,14 @@
     main {
       /* max-width: none; */
       grid-template-columns: 2fr 3fr;
+      mix-blend-mode: multiply;
     }
   }
 
   .grid {
     /* display: flex; */
     flex-wrap: wrap;
+
     background: #eee;
     width: 100%;
     align-items: baseline;
