@@ -121,15 +121,20 @@ export default class PhysicsWorld {
     this.renderer = renderer
   }
 
-  registerPhysDiv(el) {
+  registerPhysDiv(el, options) {
     const origin = el.getBoundingClientRect()
+
+    const dynamic = options?.dynamic ? true : false
+
+    console.log(dynamic)
 
     if (this.worldFactory) {
       const body = this.worldFactory.createShape(
         origin.x,
         origin.y,
         origin.width,
-        origin.height
+        origin.height,
+        dynamic
       )
       const lastPosition = { x: 0, y: 0 }
       const lastAngle = 0
@@ -144,9 +149,6 @@ export default class PhysicsWorld {
 
   syncDomToPhysics() {
     frame++
-    // let update = frame % 2 == 0 ? true : false
-    // let update = true
-    // let logged = false
 
     for (const obj of this.physDivList) {
       const physPos = obj.body.GetPosition()

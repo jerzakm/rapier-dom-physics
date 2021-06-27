@@ -4,17 +4,12 @@
 
   let element
   let registered = false
-
-  //
-  // const physicsWorld = getContext('physicsWorld')
+  export let dynamic = true
 
   onMount(() => {
-    // Registration with context - OLD
-    // physicsWorld.registerPhysDiv(element)
-
     divPhysicsWorldStore.subscribe((world) => {
       if (world && !registered) {
-        world.registerPhysDiv(element)
+        world.registerPhysDiv(element, { dynamic })
         registered = true
       }
     })

@@ -18,9 +18,7 @@ export class WorldFactory {
 
     myQueryCallback.ReportFixture = (fixturePtr) => {
       const fixture = wrapPointer(fixturePtr, b2Fixture)
-      if (fixture.GetBody().GetType() != b2_dynamicBody)
-        //mouse cannot drag static bodies around
-        return true
+      if (fixture.GetBody().GetType() != b2_dynamicBody) return true
       return false
     }
     const world = new b2World(new b2Vec2(0.0, 600.0))

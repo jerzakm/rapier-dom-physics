@@ -10,15 +10,15 @@
         <div class="grid">
           <PhysDiv><div class="grid-item" /></PhysDiv>
           <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
-          <PhysDiv><div class="grid-item " /></PhysDiv>
+          <PhysDiv dynamic={false}><div class="grid-item " /></PhysDiv>
           <PhysDiv><div class="grid-item " /></PhysDiv>
           <PhysDiv><div class="grid-item grid-item--width3" /></PhysDiv>
           <PhysDiv><div class="grid-item" /></PhysDiv>
           <PhysDiv><div class="grid-item" /></PhysDiv>
-          <PhysDiv><div class="grid-item " /></PhysDiv>
+          <PhysDiv dynamic={false}><div class="grid-item " /></PhysDiv>
           <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
           <PhysDiv><div class="grid-item" /></PhysDiv>
-          <PhysDiv><div class="grid-item " /></PhysDiv>
+          <PhysDiv dynamic={false}><div class="grid-item " /></PhysDiv>
           <PhysDiv><div class="grid-item" /></PhysDiv>
           <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
           <PhysDiv><div class="grid-item grid-item--width2" /></PhysDiv>
@@ -43,7 +43,7 @@
             else?
           </p>
         </PhysDiv>
-        <PhysDiv>
+        <PhysDiv dynamic={false}>
           <a href=".">Open an issue</a> or</PhysDiv
         >
         <PhysDiv><a href=".">Send me a message</a></PhysDiv>
@@ -52,7 +52,7 @@
     <div class="grid">
       <PhysDiv><div class="grid-item" /></PhysDiv>
       <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
-      <PhysDiv><div class="grid-item " /></PhysDiv>
+      <PhysDiv dynamic={false}><div class="grid-item " /></PhysDiv>
       <PhysDiv><div class="grid-item " /></PhysDiv>
       <PhysDiv><div class="grid-item grid-item--width3" /></PhysDiv>
       <PhysDiv><div class="grid-item" /></PhysDiv>
@@ -66,7 +66,7 @@
       <PhysDiv><div class="grid-item grid-item--width2" /></PhysDiv>
       <PhysDiv><div class="grid-item" /></PhysDiv>
       <PhysDiv><div class="grid-item " /></PhysDiv>
-      <PhysDiv><div class="grid-item" /></PhysDiv>
+      <PhysDiv dynamic={false}><div class="grid-item" /></PhysDiv>
       <PhysDiv><div class="grid-item" /></PhysDiv>
       <PhysDiv><div class="grid-item " /></PhysDiv>
       <PhysDiv><div class="grid-item " /></PhysDiv>
@@ -85,7 +85,9 @@
       <PhysDiv><div class="grid-item" /></PhysDiv>
       <PhysDiv><div class="grid-item " /></PhysDiv>
       <PhysDiv><div class="grid-item" /></PhysDiv>
-      <PhysDiv><div class="grid-item grid-item--width2 " /></PhysDiv>
+      <PhysDiv dynamic={false}
+        ><div class="grid-item grid-item--width2 " /></PhysDiv
+      >
       <PhysDiv><div class="grid-item grid-item--width2" /></PhysDiv>
       <PhysDiv><div class="grid-item" /></PhysDiv>
       <PhysDiv><div class="grid-item " /></PhysDiv>
