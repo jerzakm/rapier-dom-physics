@@ -3,14 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --no-clear",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "watch:tailwind": "postcss public/tailwind.css -o public/index.css -w",
+    "build:tailwind": "cross-env NODE_ENV=production postcss public/tailwind.css -o public/index.css",
+    "build": "npm run build:tailwind && rollup -c",
+    "start": "sirv public",
+    "serve": "serve public -p 80",
+    "dev": "concurrently \"rollup -c -w\" \"npm run watch:tailwind\""
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "@tsconfig/svelte": "^2.0.0",
+    "autoprefixer": "^9.8.8",
+    "concurrently": "^6.4.0",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.4.4",
+    "postcss-cli": "^7.1.2",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
@@ -18,11 +27,10 @@
     "rollup-plugin-terser": "^7.0.0",
     "svelte": "^3.0.0",
     "svelte-check": "^2.0.0",
-    "svelte-preprocess": "^4.0.0",
-    "@rollup/plugin-typescript": "^8.0.0",
-    "typescript": "^4.0.0",
+    "svelte-preprocess": "^4.9.8",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "tslib": "^2.0.0",
-    "@tsconfig/svelte": "^2.0.0"
+    "typescript": "^4.0.0"
   },
   "dependencies": {
     "sirv-cli": "^1.0.0"
