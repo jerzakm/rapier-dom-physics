@@ -19,6 +19,8 @@ export class Renderer {
     this.app.view.id = "pixi-view";
     this.app.view.style.position = "fixed";
     this.app.view.style.top = "0";
+    this.app.view.style.pointerEvents = "none";
+    this.app.view.style.opacity = "0.1";
 
     this.stage = this.app.stage;
 
