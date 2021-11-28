@@ -3,6 +3,23 @@ import * as PIXI from "pixi.js";
 import { Renderer } from "./renderer";
 import PhysicsDomWorker from "./physicsDomWorker?worker";
 
+const findDomPhysicsElements = () => {
+  // DOM ELEMENTS
+  const elements: PhysicsElement[] = [];
+  document.body.querySelectorAll("[data-physics-type]").forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    elements.push({
+      el,
+      x: rect.x,
+      y: rect.y,
+      width: rect.width,
+      height: rect.height,
+    });
+  });
+
+  return elements;
+};
+
 async function startDomPhysics() {
   const worker = new PhysicsDomWorker();
 
@@ -172,4 +189,12 @@ export type PositionSyncMap = {
 
 export interface PhysicsObjectOptions {
   isStatic: boolean;
+}
+
+interface PhysicsElement {
+  el: Element;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }

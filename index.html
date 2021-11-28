@@ -44,19 +44,19 @@
         </div>
         <!-- LEFT -->
         <div class="h-full">
-          <h1 class="mb-5 text-5xl font-bold">
+          <h1 class="mb-5 text-5xl font-bold" data-physics-type="rect">
             DOM Physics with Svelte and Rapier.rs
           </h1>
           <p>
-            <span>Simple proof of concept for a fun user interaction.</span>
-            <span
+            <span data-physics-type="rect">Simple proof of concept for a fun user interaction.</span>
+            <span data-physics-type="rect"
               >We pretend that elements of the webpage are rectangles in a 2D
               physics world.</span
             >
           </p>
           <p><span>Press the button and let the magic happen.</span></p>
     
-          <button class="btn btn-primary mt-5" id="physics-btn">Let's get physical</button>
+          <button class="btn btn-primary mt-5" id="physics-btn" data-physics-type="rect">Let's get physical</button>
     
   
         </div>
