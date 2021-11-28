@@ -1,6 +1,8 @@
 import { PositionSyncMap } from "./main";
 import { getRapier } from "./rapier";
 
+console.log("loaded physics");
+
 const maxFps = 500;
 const deltaGoal = 1000 / maxFps;
 

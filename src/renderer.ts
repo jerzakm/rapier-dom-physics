@@ -8,7 +8,8 @@ export class Renderer {
     this.app = new PIXI.Application({
       width: window.innerWidth,
       height: window.innerHeight,
-      backgroundColor: 0xcecece,
+      backgroundColor: undefined,
+      backgroundAlpha: 0,
       resolution: 1,
       antialias: true,
     });
@@ -16,6 +17,8 @@ export class Renderer {
 
     document.body.appendChild(this.app.view);
     this.app.view.id = "pixi-view";
+    this.app.view.style.position = "fixed";
+    this.app.view.style.top = "0";
 
     this.stage = this.app.stage;
 

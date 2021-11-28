@@ -1,20 +1,10 @@
 import "./style/global.css";
 import * as PIXI from "pixi.js";
 import { Renderer } from "./renderer";
-import PhysicsWorker from "./physicsWorker?worker";
-// import { IChamferableBodyDefinition } from "matter-js";
+import PhysicsDomWorker from "./physicsDomWorker?worker";
 
-const spawnerAmount = 100;
-const spawnerTimer = 1000;
-const spawnAtStart = 500;
-
-let bodySyncDelta = 0;
-let rendererFps = 0;
-let bodyCount = 0;
-let statsUpdateFrequency = 500;
-
-async function workerExample() {
-  const worker = new PhysicsWorker();
+async function startDomPhysics() {
+  const worker = new PhysicsDomWorker();
 
   const { app, stage } = new Renderer();
   const container = new PIXI.Container();
@@ -46,20 +36,6 @@ async function workerExample() {
     });
   };
 
-  const spawnRandomDynamicSquare = () => {
-    const x =
-      window.innerWidth / 2 + (Math.random() - 0.5) * window.innerWidth * 0.8;
-    const y =
-      window.innerHeight / 2 + (Math.random() - 0.5) * window.innerHeight * 0.8;
-
-    const options = {
-      restitution: 0,
-    };
-
-    const size = 4 + 10 * Math.random();
-    addBody(x, y, size, size, options);
-  };
-
   const setupWalls = () => {
     addBody(window.innerWidth / 2, 0, window.innerWidth, 50, {
       isStatic: true,
@@ -80,8 +56,6 @@ async function workerExample() {
     worker.addEventListener("message", (e) => {
       if (e.data.type == "BODY_SYNC") {
         const physData = e.data.data;
-
-        bodySyncDelta = e.data.delta;
 
         for (const obj of physicsObjects) {
           const { x, y, rotation } = physData[obj.id];
@@ -115,28 +89,13 @@ async function workerExample() {
       if (e.data.type == "PHYSICS_LOADED") {
         // initial spawn
         setupWalls();
-        for (let i = 0; i < spawnAtStart; i++) {
-          spawnRandomDynamicSquare();
-        }
       }
     });
   };
 
-  const timedSpawner = () => {
-    for (let i = 0; i < spawnerAmount; i++) {
-      spawnRandomDynamicSquare();
-    }
-
-    setTimeout(() => {
-      timedSpawner();
-    }, spawnerTimer);
-  };
-
-  timedSpawner();
   initPhysicsHandler();
 
   // gameloop
-  let lastSpawnAttempt = 0;
   let delta = 0;
 
   app.ticker.stop();
@@ -145,18 +104,28 @@ async function workerExample() {
   const gameLoop = () => {
     start = performance.now();
     app.render();
-    lastSpawnAttempt += delta;
 
-    bodyCount = physicsObjects.length;
     delta = performance.now() - start;
-    rendererFps = 60 / delta;
     setTimeout(() => gameLoop(), 0);
   };
 
   gameLoop();
 }
 
-// workerExample();
+const setup = async () => {
+  const button = document.body.querySelector("#physics-btn");
+  if (!button) {
+    console.log("start physics button not found");
+    return;
+  }
+
+  button.addEventListener("click", (e) => {
+    startDomPhysics();
+  });
+};
+
+setup();
+startDomPhysics();
 
 interface IPhysicsSyncBody {
   id: string | number;
