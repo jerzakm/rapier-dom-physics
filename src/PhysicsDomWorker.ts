@@ -1,8 +1,6 @@
 import { PositionSyncMap } from "./main";
 import { getRapier } from "./rapier";
 
-console.log("loaded physics");
-
 const maxFps = 500;
 const deltaGoal = 1000 / maxFps;
 
@@ -11,7 +9,7 @@ const bodyAddQueue: any[] = [];
 async function init() {
   const RAPIER = await getRapier();
   // Use the RAPIER module here.
-  let gravity = { x: 0.0, y: 0.0 };
+  let gravity = { x: 0.0, y: 0.001 };
   let world = new RAPIER.World(gravity);
 
   const applyForceToRandomBody = () => {
@@ -26,8 +24,8 @@ async function init() {
 
     body.applyImpulse(
       {
-        x: (Math.random() - 0.5) * mass ** 2 * 0.5,
-        y: (Math.random() - 0.5) * mass ** 2 * 0.5,
+        x: (Math.random() - 0.5) * mass * 0.5,
+        y: (Math.random() - 0.5) * mass * 0.5,
       },
       true
     );
@@ -72,8 +70,8 @@ async function init() {
   let gameLoop = (delta = 16) => {
     const startTs = performance.now();
 
-    if (Math.random() > 0.3) {
-      applyForceToRandomBody();
+    if (Math.random() < 0.05) {
+      // applyForceToRandomBody();
     }
 
     while (bodyAddQueue.length > 0) {

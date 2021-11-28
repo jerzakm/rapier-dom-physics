@@ -93,6 +93,20 @@ async function startDomPhysics() {
     );
   };
 
+  const spawnRandomDynamicSquare = () => {
+    const x =
+      window.innerWidth / 2 + (Math.random() - 0.5) * window.innerWidth * 0.8;
+    const y =
+      window.innerHeight / 2 + (Math.random() - 0.5) * window.innerHeight * 0.8;
+
+    const options = {
+      restitution: 0,
+    };
+
+    const size = 4 + 10 * Math.random();
+    addBody(x, y, size, size, options);
+  };
+
   const initPhysicsHandler = () => {
     // Listener to handle data that worker passes to main thread
     worker.addEventListener("message", (e) => {
@@ -131,6 +145,13 @@ async function startDomPhysics() {
       if (e.data.type == "PHYSICS_LOADED") {
         // initial spawn
         setupWalls();
+        const domElements = findDomPhysicsElements();
+
+        for (const { x, y, width, height } of domElements) {
+          addBody(x + width / 2, y + height / 2, width, height, {
+            isStatic: false,
+          });
+        }
       }
     });
   };
