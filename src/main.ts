@@ -6,6 +6,7 @@ import PhysicsDomWorker from "./physicsDomWorker?worker";
 const findDomPhysicsElements = () => {
   // DOM ELEMENTS
   const elements: PhysicsElement[] = [];
+  let domId = 0;
   document.body.querySelectorAll("[data-physics-type]").forEach((el) => {
     const rect = el.getBoundingClientRect();
     elements.push({
@@ -14,7 +15,9 @@ const findDomPhysicsElements = () => {
       y: rect.y,
       width: rect.width,
       height: rect.height,
+      domId,
     });
+    domId++;
   });
 
   return elements;
@@ -29,6 +32,7 @@ async function startDomPhysics() {
   stage.addChild(container);
 
   const physicsObjects: IPhysicsSyncBody[] = [];
+  const domElements = findDomPhysicsElements();
 
   const addBody = (
     x = 0,
@@ -93,20 +97,6 @@ async function startDomPhysics() {
     );
   };
 
-  const spawnRandomDynamicSquare = () => {
-    const x =
-      window.innerWidth / 2 + (Math.random() - 0.5) * window.innerWidth * 0.8;
-    const y =
-      window.innerHeight / 2 + (Math.random() - 0.5) * window.innerHeight * 0.8;
-
-    const options = {
-      restitution: 0,
-    };
-
-    const size = 4 + 10 * Math.random();
-    addBody(x, y, size, size, options);
-  };
-
   const initPhysicsHandler = () => {
     // Listener to handle data that worker passes to main thread
     worker.addEventListener("message", (e) => {
@@ -119,12 +109,19 @@ async function startDomPhysics() {
           obj.sprite.position.x = x;
           obj.sprite.position.y = y;
           obj.sprite.rotation = rotation;
+          if (obj.domId >= 0) {
+            const p = domElements[obj.domId];
+            //@ts-ignore
+            p.el.style.transform = `translate(${x - p.x - p.width / 2}px, ${
+              y - p.y - p.height / 2
+            }px) rotate(${rotation}rad)`;
+          }
         }
       }
       if (e.data.type == "BODY_CREATED") {
         const texture = PIXI.Texture.from("square.png");
         const sprite = new PIXI.Sprite(texture);
-        const { x, y, width, height, id }: IPhysicsSyncBody = e.data.data;
+        const { x, y, width, height, id, domId } = e.data.data;
         sprite.anchor.set(0.5);
         sprite.position.x = x;
         sprite.position.y = y;
@@ -140,16 +137,17 @@ async function startDomPhysics() {
           height,
           angle: 0,
           sprite,
+          domId,
         });
       }
       if (e.data.type == "PHYSICS_LOADED") {
         // initial spawn
         setupWalls();
-        const domElements = findDomPhysicsElements();
 
-        for (const { x, y, width, height } of domElements) {
+        for (const { x, y, width, height, domId } of domElements) {
           addBody(x + width / 2, y + height / 2, width, height, {
             isStatic: false,
+            domId,
           });
         }
       }
@@ -197,6 +195,7 @@ interface IPhysicsSyncBody {
   width: number;
   height: number;
   angle: number;
+  domId: number;
   sprite: PIXI.Sprite | undefined;
 }
 
@@ -218,4 +217,5 @@ interface PhysicsElement {
   y: number;
   width: number;
   height: number;
+  domId: number;
 }

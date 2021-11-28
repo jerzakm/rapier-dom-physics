@@ -101,6 +101,7 @@ async function init() {
         type: "BODY_CREATED",
         data: {
           id: bodyCollider.handle,
+          domId: options.domId,
           x,
           y,
           width,
