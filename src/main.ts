@@ -37,18 +37,43 @@ async function startDomPhysics() {
   };
 
   const setupWalls = () => {
-    addBody(window.innerWidth / 2, 0, window.innerWidth, 50, {
-      isStatic: true,
-    });
-    addBody(window.innerWidth / 2, window.innerHeight, window.innerWidth, 50, {
-      isStatic: true,
-    });
-    addBody(0, window.innerHeight / 2, 50, window.innerHeight, {
-      isStatic: true,
-    });
-    addBody(window.innerWidth, window.innerHeight / 2, 50, window.innerHeight, {
-      isStatic: true,
-    });
+    const WALL_THICKNESS = 50;
+    addBody(
+      window.innerWidth / 2,
+      0 - WALL_THICKNESS / 3,
+      window.innerWidth,
+      WALL_THICKNESS,
+      {
+        isStatic: true,
+      }
+    );
+    addBody(
+      window.innerWidth / 2,
+      window.innerHeight + WALL_THICKNESS / 3,
+      window.innerWidth,
+      WALL_THICKNESS,
+      {
+        isStatic: true,
+      }
+    );
+    addBody(
+      0 - WALL_THICKNESS / 3,
+      window.innerHeight / 2,
+      WALL_THICKNESS,
+      window.innerHeight,
+      {
+        isStatic: true,
+      }
+    );
+    addBody(
+      window.innerWidth + WALL_THICKNESS / 3,
+      window.innerHeight / 2,
+      WALL_THICKNESS,
+      window.innerHeight,
+      {
+        isStatic: true,
+      }
+    );
   };
 
   const initPhysicsHandler = () => {
