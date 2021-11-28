@@ -6,6 +6,7 @@ import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
 import css from "rollup-plugin-css-only";
+import webWorkerLoader from "rollup-plugin-web-worker-loader";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -36,6 +37,7 @@ function serve() {
 
 export default {
   input: "src/main.ts",
+  cache: false,
   output: {
     sourcemap: true,
     format: "iife",
@@ -43,6 +45,10 @@ export default {
     file: "public/build/bundle.js",
   },
   plugins: [
+    webWorkerLoader({
+      inline: true,
+    }),
+
     svelte({
       preprocess: sveltePreprocess({ sourceMap: !production }),
       compilerOptions: {
@@ -64,6 +70,7 @@ export default {
       dedupe: ["svelte"],
     }),
     commonjs(),
+
     typescript({
       sourceMap: !production,
       inlineSources: !production,
