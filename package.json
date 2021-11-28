@@ -1,41 +1,23 @@
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
-  "private": true,
+  "name": "matterjs-pixi-worker",
+  "version": "0.0.0",
   "scripts": {
-    "watch:tailwind": "postcss public/tailwind.css -o public/index.css -w",
-    "build:tailwind": "cross-env NODE_ENV=production postcss public/tailwind.css -o public/index.css",
-    "build": "npm run build:tailwind && rollup -c",
-    "start": "sirv public",
-    "serve": "serve public -p 80",
-    "dev": "concurrently \"rollup -c -w\" \"npm run watch:tailwind\""
+    "dev": "vite --config vite.config.js",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
-    "@rollup/plugin-typescript": "^8.0.0",
-    "@tsconfig/svelte": "^2.0.0",
-    "autoprefixer": "^9.8.8",
-    "concurrently": "^6.4.0",
-    "cross-env": "^7.0.3",
+    "@types/offscreencanvas": "^2019.6.4",
+    "autoprefixer": "^10.4.0",
     "postcss": "^8.4.4",
-    "postcss-cli": "^7.1.2",
-    "rollup": "^2.3.4",
-    "rollup-plugin-css-only": "^3.1.0",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^7.0.0",
-    "rollup-plugin-terser": "^7.0.0",
-    "rollup-plugin-watch": "^1.0.1",
-    "svelte": "^3.0.0",
-    "svelte-check": "^2.0.0",
-    "svelte-preprocess": "^4.9.8",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
-    "tslib": "^2.0.0",
-    "typescript": "^4.0.0"
+    "tailwindcss": "^2.2.19",
+    "typescript": "^4.3.2",
+    "vite": "^2.6.4"
   },
   "dependencies": {
+    "@dimforge/rapier2d": "^0.7.6",
+    "@dimforge/rapier2d-compat": "^0.7.6",
     "daisyui": "^1.16.2",
-    "rollup-plugin-web-worker-loader": "^1.6.1",
-    "sirv-cli": "^1.0.0"
+    "pixi.js": "^6.1.3"
   }
 }

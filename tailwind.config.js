@@ -1,9 +1,5 @@
 module.exports = {
-  future: {
-    purgeLayersByDefault: true,
-    removeDeprecatedGapUtilities: true,
-  },
-  purge: ["./public/index.html", "./src/**/*.svelte"],
+  purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
