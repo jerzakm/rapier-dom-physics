@@ -97,6 +97,43 @@ async function startDomPhysics() {
     );
   };
 
+  const setupCursorPhysics = () => {
+    const cursor: any = document.body.querySelector("cursor");
+    addBody(window.innerWidth / 2, window.innerHeight / 2, 32, 32, {
+      shape: "circle",
+      type: "cursor",
+    });
+
+    let lastPosition = {
+      x: 0,
+      y: 0,
+    };
+
+    window.addEventListener("mousemove", ({ x, y }) => {
+      if (cursor) {
+        const newPosition = { x, y };
+
+        const changeDistance = Math.sqrt(
+          (lastPosition.x - newPosition.x) ** 2 +
+            (lastPosition.y - newPosition.y) ** 2
+        );
+        cursor.style.left = `${x}px`;
+        cursor.style.top = `${y}px`;
+
+        if (changeDistance > 8) {
+          lastPosition = newPosition;
+          worker.postMessage({
+            type: "SYNC_CURSOR",
+            data: {
+              x,
+              y,
+            },
+          });
+        }
+      }
+    });
+  };
+
   const initPhysicsHandler = () => {
     // Listener to handle data that worker passes to main thread
     worker.addEventListener("message", (e) => {
@@ -119,6 +156,7 @@ async function startDomPhysics() {
         }
       }
       if (e.data.type == "BODY_CREATED") {
+        console.log(e.data);
         const texture = PIXI.Texture.from("square.png");
         const sprite = new PIXI.Sprite(texture);
         const { x, y, width, height, id, domId } = e.data.data;
@@ -143,6 +181,7 @@ async function startDomPhysics() {
       if (e.data.type == "PHYSICS_LOADED") {
         // initial spawn
         setupWalls();
+        setupCursorPhysics();
 
         for (const { x, y, width, height, domId } of domElements) {
           addBody(x + width / 2, y + height / 2, width, height, {
@@ -182,14 +221,6 @@ const setup = async () => {
 
   button.addEventListener("click", (e) => {
     startDomPhysics();
-  });
-
-  const cursor: any = document.body.querySelector("cursor");
-  window.addEventListener("mousemove", (e) => {
-    if (cursor) {
-      cursor.style.left = `${e.x}px`;
-      cursor.style.top = `${e.y}px`;
-    }
   });
 };
 

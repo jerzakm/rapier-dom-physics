@@ -3,8 +3,16 @@ import { getRapier } from "./rapier";
 
 const maxFps = 60;
 const deltaGoal = 1000 / maxFps;
+const VECTOR_ZERO = { x: 0, y: 0 };
 
 const bodyAddQueue: any[] = [];
+
+let cursor: any = {
+  handle: undefined,
+  body: undefined,
+  collider: undefined,
+  position: { x: 100, y: 100 },
+};
 
 async function init() {
   const RAPIER = await getRapier();
@@ -71,7 +79,7 @@ async function init() {
     const startTs = performance.now();
 
     if (Math.random() < 0.01) {
-      applyForceToRandomBody();
+      // applyForceToRandomBody();
     }
 
     while (bodyAddQueue.length > 0) {
@@ -89,14 +97,23 @@ async function init() {
         );
       }
 
-      const colliderDesc = new RAPIER.ColliderDesc(
+      let colliderDesc = new RAPIER.ColliderDesc(
         new RAPIER.Cuboid(width / 2, height / 2)
       ).setTranslation(0, 0);
+
+      if (options.shape == "circle") {
+        colliderDesc = new RAPIER.ColliderDesc(new RAPIER.Ball(width / 2));
+      }
 
       const bodyCollider = world.createCollider(colliderDesc, rigidBody.handle);
 
       bodyAddQueue.shift();
 
+      if (options.type == "cursor") {
+        cursor.handle = bodyCollider.handle;
+        cursor.collider = bodyCollider;
+        cursor.body = rigidBody;
+      }
       self.postMessage({
         type: "BODY_CREATED",
         data: {
@@ -110,6 +127,47 @@ async function init() {
           sprite: undefined,
         },
       });
+    }
+
+    // Cursor movement 1
+    if (cursor.position.x && cursor.position.y && cursor.body) {
+      const body = cursor.body;
+      const velocity = body.linvel();
+
+      const direction = {
+        x: 0,
+        y: 0,
+      };
+      const MOVE_SPEED = 80;
+
+      const position = cursor.body.translation();
+      const goal = cursor.position;
+
+      const distanceFromGoal = Math.sqrt(
+        (position.x - goal.x) ** 2 + (position.y - goal.y) ** 2
+      );
+      if (distanceFromGoal < 10) {
+        body.setTranslation(goal, true);
+
+        direction.x = 0;
+        direction.y = 0;
+        body.setAngvel(0, true);
+        body.setLinvel(VECTOR_ZERO, true);
+        cursor.position.x = undefined;
+        cursor.position.y = undefined;
+      } else {
+        const x = goal.x - position.x;
+        const y = goal.y - position.y;
+        const div = Math.max(Math.abs(x), Math.abs(y));
+        direction.x = x / div;
+        direction.y = y / div;
+      }
+
+      const impulse = {
+        x: (direction.x * 2 - velocity.x) * 40,
+        y: (direction.y * 2 - velocity.y) * 40,
+      };
+      body.applyImpulse(impulse, true);
     }
 
     world.timestep = delta;
@@ -139,8 +197,19 @@ async function init() {
   self.addEventListener("message", (e) => {
     const message = e.data || e;
 
-    if (message.type == "ADD_BODY") {
-      bodyAddQueue.push(message.data);
+    switch (message.type) {
+      case "ADD_BODY":
+        bodyAddQueue.push(message.data);
+        return;
+      case "SYNC_CURSOR":
+        const { x, y } = message.data;
+        cursor.position = {
+          x,
+          y,
+        };
+        return;
+      default:
+        console.log("unknown command sent to worker");
     }
   });
 }
