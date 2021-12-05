@@ -183,10 +183,18 @@ const setup = async () => {
   button.addEventListener("click", (e) => {
     startDomPhysics();
   });
+
+  const cursor: any = document.body.querySelector("cursor");
+  window.addEventListener("mousemove", (e) => {
+    if (cursor) {
+      cursor.style.left = `${e.x}px`;
+      cursor.style.top = `${e.y}px`;
+    }
+  });
 };
 
 setup();
-startDomPhysics();
+// startDomPhysics();
 
 interface IPhysicsSyncBody {
   id: string | number;
