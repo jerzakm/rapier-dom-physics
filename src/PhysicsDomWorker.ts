@@ -113,6 +113,7 @@ async function init() {
         cursor.handle = bodyCollider.handle;
         cursor.collider = bodyCollider;
         cursor.body = rigidBody;
+        rigidBody.setGravityScale(0, true);
       }
       self.postMessage({
         type: "BODY_CREATED",
@@ -138,15 +139,13 @@ async function init() {
         x: 0,
         y: 0,
       };
-      const MOVE_SPEED = 80;
-
       const position = cursor.body.translation();
       const goal = cursor.position;
 
       const distanceFromGoal = Math.sqrt(
         (position.x - goal.x) ** 2 + (position.y - goal.y) ** 2
       );
-      if (distanceFromGoal < 10) {
+      if (distanceFromGoal < 8 || distanceFromGoal > 300) {
         body.setTranslation(goal, true);
 
         direction.x = 0;
@@ -164,8 +163,8 @@ async function init() {
       }
 
       const impulse = {
-        x: (direction.x * 2 - velocity.x) * 40,
-        y: (direction.y * 2 - velocity.y) * 40,
+        x: (direction.x * 20 - velocity.x) * 100,
+        y: (direction.y * 20 - velocity.y) * 100,
       };
       body.applyImpulse(impulse, true);
     }
@@ -191,8 +190,8 @@ async function init() {
 
   // once a second check for bodies out of bound
   setInterval(() => {
-    // outOfBoundCheck();
-  }, 1000);
+    outOfBoundCheck();
+  }, 100);
 
   self.addEventListener("message", (e) => {
     const message = e.data || e;

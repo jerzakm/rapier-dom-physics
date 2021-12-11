@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.63a26457.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixijs + physics</title>
+    <script type="module" crossorigin src="/assets/index.30cb9234.js"></script>
+    <link rel="stylesheet" href="/assets/index.7ee55b5b.css">
+  </head>
+  <body>
+    <cursor></cursor>
+    <main class="min-h-screen bg-base-200 p-10">
+      <div class="grid grid-cols-3 gap-10">
+        <!-- LEFT -->
+        <div class="h-full text-xl">
+          <h1 class="mb-5 text-5xl font-bold" data-physics-type="rect">
+            DOM Physics with Rapier.rs
+          </h1>
+          <p data-physics-type="rect">
+            <span>Simple proof of concept for a fun user interaction.</span>
+            <span
+              >We pretend that elements of the webpage are rectangles in a 2D
+              physics world.</span
+            >
+          </p>
+          <p data-physics-type="rect">
+            <span class="font-bold"
+              >Press the button and let the magic happen.</span
+            >
+          </p>
+
+          <button class="btn btn-primary mt-5 text-2xl" id="physics-btn">
+            Let's get physical
+          </button>
+
+          <div class="mt-16 flex flex-col items-start">
+            <h2 class="text-xl font-bold" data-physics-type="rect">
+              Built with:
+            </h2>
+            <div class="flex gap-1">
+              <div data-physics-type="rect">
+                <div class="badge">Rapier.rs</div>
+              </div>
+
+              <div data-physics-type="rect">
+                <div class="badge badge-primary">Typescript</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-secondary">Webworkers</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-accent">Vite</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-accent badge-outline">Tailwind</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-primary badge-outline">DaisyUI</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-16 flex flex-col items-start">
+            <h2 class="text-xl font-bold" data-physics-type="rect">
+              More badges so they fly around!
+            </h2>
+            <div class="flex gap-1">
+              <div data-physics-type="rect">
+                <div class="badge">Badges</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-primary">are</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-secondary">temporary</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-accent badge-outline">Wu</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-primary badge-outline">Tang</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-outline">is</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-secondary badge-outline">forever</div>
+              </div>
+            </div>
+            <div class="flex gap-1">
+              <div data-physics-type="rect">
+                <div class="badge">and</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-primary">it</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-secondary">ain't</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-accent badge-outline">nutin</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-primary badge-outline">to</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-outline">mess</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge badge-secondary badge-outline">around</div>
+              </div>
+              <div data-physics-type="rect">
+                <div class="badge">with</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- CENTER -->
+        <div class="grid grid-cols-2 gap-5">
+          <div
+            class="card shadow-xl image-full col-span-2"
+            data-physics-type="rect"
+          >
+            <figure>
+              <img src="https://picsum.photos/id/1005/400/250" />
+            </figure>
+            <div class="justify-end card-body">
+              <h2 class="card-title">DaisyUI is pretty cool</h2>
+              <p>
+                You should totally check it out. I love using it for quick
+                mockups like this one.
+              </p>
+              <div class="card-actions">
+                <button class="btn btn-primary">Get Started</button>
+              </div>
+            </div>
+          </div>
+          <div class="shadow-2xl stats" data-physics-type="rect">
+            <div class="stat">
+              <div class="stat-title">Total Page Views</div>
+              <div class="stat-value">89,400</div>
+              <div class="stat-desc">21% more than last month</div>
+            </div>
+          </div>
+          <div class="shadow-2xl stats" data-physics-type="rect">
+            <div class="stat">
+              <div class="stat-title">Total Page Views</div>
+              <div class="stat-value">89,400</div>
+              <div class="stat-desc">21% more than last month</div>
+            </div>
+          </div>
+          <div class="shadow-2xl stats" data-physics-type="rect">
+            <div class="stat">
+              <div class="stat-title">Total Page Views</div>
+              <div class="stat-value">89,400</div>
+              <div class="stat-desc">21% more than last month</div>
+            </div>
+          </div>
+          <div class="shadow-2xl stats" data-physics-type="rect">
+            <div class="stat">
+              <div class="stat-title">Total Page Views</div>
+              <div class="stat-value">89,400</div>
+              <div class="stat-desc">21% more than last month</div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-10">
+          <div class="card text-center shadow-2xl" data-physics-type="rect">
+            <div class="card-body flex items-center">
+              <h2 class="card-title">Gravity</h2>
+              <p>
+                <input type="range" max="100" value="40" class="range" />
+                <input type="range" max="100" value="40" class="range" />
+              </p>
+              <div class="btn-group">
+                <button class="btn btn-outline btn-xs btn-active">Earth</button>
+                <button class="btn btn-outline btn-xs">Zero</button>
+                <button class="btn btn-outline btn-xs">Custom</button>
+              </div>
+              <div class="justify-center card-actions"></div>
+            </div>
+          </div>
+
+          <div
+            class="card shadow-2xl lg:card-side bg-primary text-primary-content"
+            data-physics-type="rect"
+          >
+            <div class="card-body">
+              <p>
+                Rerum reiciendis beatae tenetur excepturi aut pariatur est eos.
+              </p>
+              <div class="justify-end card-actions">
+                <button class="btn btn-primary">
+                  More info
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    class="inline-block w-6 h-6 ml-2 stroke-current"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="
+              card
+              shadow-2xl
+              lg:card-side
+              bg-secondary
+              text-secondary-content
+            "
+            data-physics-type="rect"
+          >
+            <div class="card-body">
+              <div class="justify-end card-actions">
+                <button class="btn btn-secondary btn-square">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    class="inline-block w-6 h-6 stroke-current"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <p>
+                Rerum reiciendis beatae tenetur excepturi aut pariatur est eos.
+              </p>
+            </div>
+          </div>
+          <div
+            class="
+              card
+              text-center
+              shadow-2xl
+              lg:card-side
+              bg-accent
+              text-accent-content
+            "
+            data-physics-type="rect"
+          >
+            <div class="card-body">
+              <p>
+                Rerum reiciendis beatae tenetur excepturi aut pariatur est eos.
+              </p>
+              <div class="justify-center card-actions">
+                <button class="btn btn-accent">Start now</button>
+                <button class="btn btn-accent">More info</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+  </body>
+</html>
