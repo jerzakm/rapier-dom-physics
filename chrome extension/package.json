@@ -1,0 +1,19 @@
+{
+    "name": "hello-world",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "vite build"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/chrome": "0.0.134",
+        "rollup-plugin-probe": "0.0.5",
+        "vite": "^2.2.0",
+        "vite-plugin-chrome-extension": "../.."
+    },
+    "dependencies": {}
+}
